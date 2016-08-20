@@ -13,6 +13,8 @@ BOT_NAME = 'xsscrapy'
 SPIDER_MODULES = ['xsscrapy.spiders']
 NEWSPIDER_MODULE = 'xsscrapy.spiders'
 
+http_proxy = "http://127.0.0.1:8080"
+
 # For adding javascript rendering
 #DOWNLOAD_HANDLERS = {'http':'xsscrapy.scrapyjs.dhandler.WebkitDownloadHandler',
 #                     'https': 'xsscrapy.scrapyjs.dhandler.WebkitDownloadHandler'}
@@ -21,8 +23,8 @@ NEWSPIDER_MODULE = 'xsscrapy.spiders'
 # 200 (second): Make sure there's a random working User-Agent header set if that value's not injected with the test string
 DOWNLOADER_MIDDLEWARES = {'xsscrapy.middlewares.InjectedDupeFilter': 100,
                           'xsscrapy.middlewares.RandomUserAgentMiddleware': 200,
-                          'xsscrapy.middlewares.HttpProxyMiddleware': 300,
-                          'scrapy.contrib.downloadermiddleware.httpauth.HttpAuthMiddleware': 400
+                          'scrapy.contrib.downloadermiddleware.httpproxy.HttpProxyMiddleware': 300,
+                          'scrapy.contrib.downloadermiddleware.httpauth.HttpAuthMiddleware':400 
                           }
 
 COOKIES_ENABLED = True

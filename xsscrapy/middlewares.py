@@ -19,6 +19,10 @@ USER_AGENT_LIST = ['Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTM
 class RandomUserAgentMiddleware(object):
     ''' Use a random user-agent for each request '''
     def process_request(self, request, spider):
+        if 'proxy' in request.meta:
+            print request.meta['proxy']
+        else:
+            print 'NO PROXY' 
         ua = random.choice(USER_AGENT_LIST)
         if 'payload' in request.meta:
             payload = request.meta['payload']
@@ -28,15 +32,7 @@ class RandomUserAgentMiddleware(object):
 
         request.headers.setdefault('User-Agent', ua)
         request.meta['UA'] = ua
-
-class HttpProxyMiddleware(object):
-    '''Take command line argument for proxy. None if not provided.'''
-    def process_request(self, request, spider):
-        settings = spider.settings
-        proxy = settings.get("PROXY")
-        request.meta['proxy'] = proxy
-        return request
-
+ 
 class InjectedDupeFilter(object):
     ''' Filter duplicate payloaded URLs, headers, and forms since all of those have dont_filter = True '''
 

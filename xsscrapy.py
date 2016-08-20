@@ -37,8 +37,7 @@ def main():
                  'pw=%s' % args.password, '-a', 'basic=%s' % args.basic,
                  '-a', 'cookie_key=%s' % cookie_key, '-a', 'cookie_value=%s' % cookie_value,
                  '-s', 'CONCURRENT_REQUESTS=%s' % args.connections,
-                 '-s', 'DOWNLOAD_DELAY=%s' % rate, 
-                 '-s', 'PROXY=%s' % args.proxy])
+                 '-s', 'DOWNLOAD_DELAY=%s' % rate]) 
     except KeyboardInterrupt:
         sys.exit()
 
