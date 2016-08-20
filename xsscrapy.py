@@ -20,7 +20,7 @@ def get_args():
     parser.add_argument('-r', '--ratelimit', default='0', help="Rate in requests per minute, default=0")
     parser.add_argument('--basic', help="Use HTTP Basic Auth to login", action="store_true")
     parser.add_argument('-k', '--cookie',help="Cookie key; --cookie SessionID=afgh3193e9103bca9318031bcdf")
-    parser.add_argument('x', '--proxy', help="url and port of proxy connection; --proxy=http://127.0.0.1:8080")
+    parser.add_argument('-x', '--proxy', help="url and port of proxy connection; --proxy=http://127.0.0.1:8080")
     args = parser.parse_args()
     return args
 
@@ -37,7 +37,8 @@ def main():
                  'pw=%s' % args.password, '-a', 'basic=%s' % args.basic,
                  '-a', 'cookie_key=%s' % cookie_key, '-a', 'cookie_value=%s' % cookie_value,
                  '-s', 'CONCURRENT_REQUESTS=%s' % args.connections,
-                 '-s', 'DOWNLOAD_DELAY=%s' % rate])
+                 '-s', 'DOWNLOAD_DELAY=%s' % rate, 
+                 '-s', 'PROXY=%s' % args.proxy])
     except KeyboardInterrupt:
         sys.exit()
 

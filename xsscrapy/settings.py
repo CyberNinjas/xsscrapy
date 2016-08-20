@@ -21,7 +21,9 @@ NEWSPIDER_MODULE = 'xsscrapy.spiders'
 # 200 (second): Make sure there's a random working User-Agent header set if that value's not injected with the test string
 DOWNLOADER_MIDDLEWARES = {'xsscrapy.middlewares.InjectedDupeFilter': 100,
                           'xsscrapy.middlewares.RandomUserAgentMiddleware': 200,
-                          'scrapy.contrib.downloadermiddleware.httpauth.HttpAuthMiddleware': 300}
+                          'xsscrapy.middlewares.HttpProxyMiddleware': 300,
+                          'scrapy.contrib.downloadermiddleware.httpauth.HttpAuthMiddleware': 400
+                          }
 
 COOKIES_ENABLED = True
 #COOKIES_DEBUG = True
