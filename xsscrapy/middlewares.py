@@ -1,3 +1,4 @@
+from scrapy.utils.project import xsscrapy.settings 
 from scrapy.exceptions import IgnoreRequest
 from urlparse import unquote
 from pybloom import BloomFilter
@@ -28,6 +29,15 @@ class RandomUserAgentMiddleware(object):
 
         request.headers.setdefault('User-Agent', ua)
         request.meta['UA'] = ua
+
+class HttpProxyMiddleware(object):
+    '''Take command line argument for proxy. None if not provided.'''
+    def process_request(self, request, spider):
+        proxy = settings.get('proxy')
+        print 'proxy is... ' + proxy
+        if proxy is None:
+            return
+        request.meta['proxy'] = proxy
 
 class InjectedDupeFilter(object):
     ''' Filter duplicate payloaded URLs, headers, and forms since all of those have dont_filter = True '''
